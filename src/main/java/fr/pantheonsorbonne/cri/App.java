@@ -1,13 +1,18 @@
 package fr.pantheonsorbonne.cri;
 
 /**
- * Hello world!
- *
+ * The main class for the application.
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+public final class App {
+
+    private App() {
+
+    };
+    /**
+     * main entrypoint for my class.
+     * @param args a bunch of string from the cli
+     */
+    public static void main(final String[] args) {
+        System.out.println("Hello World!");
     }
 }

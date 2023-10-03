@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>groupId</groupId>
@@ -11,7 +12,7 @@
 		<connection>scm:git:https://github.com/nherbaut/java-maven-quickstart-latest.git</connection>
 		<developerConnection>scm:git:https://github.com/nherbaut/java-maven-quickstart-latest.git</developerConnection>
 		<url>https://github.com/nherbaut/java-maven-quickstart-latest</url>
-	  </scm>
+	</scm>
 
 
 	<properties>
@@ -42,44 +43,48 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<artifactId>laven-checkstyle-plugin</artifactId>
+					<version>3.3.0</version>
+				</plugin>
 
 				<plugin>
 					<artifactId>maven-clean-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>3.3.1</version>
 				</plugin>
 
 				<plugin>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>3.2.0</version>
+					<version>3.3.1</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.8.1</version>
+					<version>3.11.0</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>3.0.0-M5</version>
+					<version>3.1.2</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.2.0</version>
+					<version>3.3.0</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-install-plugin</artifactId>
-					<version>3.0.0-M1</version>
+					<version>3.1.1</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-deploy-plugin</artifactId>
-					<version>3.0.0-M1</version>
+					<version>3.1.1</version>
 				</plugin>
 
 				<plugin>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.9.1</version>
+					<version>4.0.0-M9</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-project-info-reports-plugin</artifactId>
-					<version>3.1.2</version>
+					<version>3.4.5</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -96,7 +101,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>3.4.1</version>
 				<executions>
 					<execution>
 						<id>enforce-maven</id>
@@ -116,7 +121,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.8</version>
+				<version>0.8.10</version>
 				<executions>
 					<execution>
 						<goals>
@@ -135,13 +140,6 @@
 
 			<plugin>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>3.12.1</version>
-				<configuration>
-					<attach>true</attach>
-					<reportPlugins>
-						
-					</reportPlugins>
-				</configuration>
 				<executions>
 					<execution>
 						<id>attach-descriptor</id>
@@ -154,10 +152,27 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-scm-publish-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>3.2.1</version>
 				<configuration>
 					<scmBranch>gh-pages</scmBranch>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.3.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<phase>verify</phase>
+						<configuration>
+							<failsOnError>false</failsOnError>
+							<configLocation>${project.basedir}/src/main/resources/checkstyle.xml</configLocation>
+						</configuration>
+					</execution>
+				</executions>
+
 			</plugin>
 		</plugins>
 	</build>
@@ -182,7 +197,7 @@
 					<outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
 
 				</configuration>
-		<!--		<reports>
+				<!--		<reports>
 					<report>changelog</report>
 				</reports>-->
 			</plugin>
@@ -217,18 +232,18 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.4.1</version>
+				<version>3.6.0</version>
 				<configuration>
 					<sourceFileIncludes>
 						src/main/java/**/*.java
 					</sourceFileIncludes>
-				<reports>
-					<report>javadoc</report>
-					<report>aggregate</report>
-					<failOnError>false</failOnError>
-				</reports>
-			</configuration>
-				
+					<reports>
+						<report>javadoc</report>
+						<report>aggregate</report>
+						<failOnError>false</failOnError>
+					</reports>
+				</configuration>
+
 			</plugin>
 
 			<plugin>
@@ -236,7 +251,14 @@
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.8</version>
 			</plugin>
-
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.3.0</version>
+				<configuration>
+					<configLocation>google_checks.xml</configLocation>
+				</configuration>
+			</plugin>
 		</plugins>
 	</reporting>
 	<distributionManagement>
