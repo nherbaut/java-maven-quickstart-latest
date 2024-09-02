@@ -296,12 +296,22 @@
 
 		</plugins>
 	</reporting>
-	<distributionManagement>
-		<site>
-			<id>github</id>
-			<url>scm:git:git@github.com:nherbaut/java-maven-quickstart-latest.git</url>
-		</site>
-	</distributionManagement>
+    <distributionManagement>
+        <site>
+            <id>github</id>
+            <url>scm:git:git@github.com:nherbaut/java-maven-quickstart-latest.git</url>
+        </site>
+        <repository>
+            <id>miage</id>
+            <url>https://maven.miage.dev/releases</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>miage</id>
+            <url>https://maven.miage.dev/snapshots</url>
+        </snapshotRepository>
+
+    </distributionManagement>
 	<url>https://github.com:/herbaut/java-maven-quickstart-latest.git</url>
 	<licenses>
 		<license>
