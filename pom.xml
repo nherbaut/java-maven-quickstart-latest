@@ -16,7 +16,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.target>21</maven.compiler.target>
+ <java.version>21</java.version>
 	</properties>
 
 	<dependencyManagement>
@@ -24,7 +25,7 @@
 			<dependency>
 				<groupId>org.junit</groupId>
 				<artifactId>junit-bom</artifactId>
-				<version>5.8.1</version>
+				<version>5.11.0</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -45,41 +46,41 @@
 
 				<plugin>
 					<artifactId>maven-clean-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>3.4.0</version>
 				</plugin>
 
 				<plugin>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>3.2.0</version>
+					<version>3.3.1</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.8.1</version>
+					<version>3.13.0</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>3.0.0-M5</version>
+					<version>3.5.0</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.2.0</version>
+					<version>3.4.2</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-install-plugin</artifactId>
-					<version>3.0.0-M1</version>
+					<version>3.1.3</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-deploy-plugin</artifactId>
-					<version>3.0.0-M1</version>
+					<version>3.1.3</version>
 				</plugin>
 
 				<plugin>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.9.1</version>
+					<version>3.20.0</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-project-info-reports-plugin</artifactId>
-					<version>3.1.2</version>
+					<version>3.6.0</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -96,7 +97,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>3.5.0</version>
 				<executions>
 					<execution>
 						<id>enforce-maven</id>
@@ -116,7 +117,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.8</version>
+				<version>0.8.12</version>
 				<executions>
 					<execution>
 						<goals>
@@ -154,7 +155,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-scm-publish-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>3.3.0</version>
 				<configuration>
 					<scmBranch>gh-pages</scmBranch>
 				</configuration>
@@ -209,7 +210,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jxr-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.5.0</version>
 				<configuration>
 					<aggregate>true</aggregate>
 				</configuration>
@@ -217,7 +218,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.4.1</version>
+				<version>3.10.0</version>
 				<configuration>
 					<sourceFileIncludes>
 						src/main/java/**/*.java
@@ -234,7 +235,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.8</version>
+				<version>0.8.12</version>
 			</plugin>
 
 		</plugins>
@@ -245,4 +246,53 @@
 			<url>scm:git:git@github.com:nherbaut/java-maven-quickstart-latest.git</url>
 		</site>
 	</distributionManagement>
+	<licenses>
+		<license>
+		  <name>Apache-2.0</name>
+		  <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		  <distribution>repo</distribution>
+		  <comments>A business-friendly OSS license</comments>
+		</license>
+	  </licenses>
+
+	  <organization>
+		<name>Miage Sorbonne</name>
+		<url>https://miage.pantheonsorbonne.fr/</url>
+	  </organization>
+
+	  <developers>
+		<developer>
+		  <id>nherbaut</id>
+		  <name>Nicolas Hebraut</name>
+		  <email>nicolas.herbaut@univ-paris1.fr</email>
+		  <url>http://nextnet.top</url>
+		  <organization>Université Paris 1 Panthéon-Sorbonne</organization>
+		  <organizationUrl>https://www.pantheonsorbonne.fr</organizationUrl>
+		  <roles>
+			<role>architect</role>
+			<role>developer</role>
+		  </roles>
+		  <timezone>Europe/Paris	</timezone>
+		  <properties>
+			<picUrl>https://nextnet.top/images/profile.png</picUrl>
+		  </properties>
+		</developer>
+	  </developers>
+
+    <repositories>
+        <repository>
+            <id>miage.release</id>
+            <name>Miage Releases</name>
+            <url>https://maven.miage.dev/releases</url>
+        </repository>
+        <repository>
+            <id>miage.snapshots</id>
+            <name>Miage Snapshots</name>
+            <url>https://maven.miage.dev/snapshots</url>
+        </repository>
+    </repositories>
+
+	<name>java-maven-quickstart-latest</name>
+	<description>Up to date maven java template with LTS</description>
+
 </project>
