@@ -5,14 +5,18 @@ package fr.pantheonsorbonne.cri;
  */
 public final class App {
 
-    private App() {
+  private App() {
+  }
 
-    };
-    /**
-     * main entrypoint for my class.
-     * @param args a bunch of string from the cli
-     */
-    public static void main(final String[] args) {
-        System.out.println("Hello World!");
-    }
+  /**
+   * Main entrypoint for my class.
+   * 
+   * <p>This method serves as the main entry point for the application.</p>
+
+   * @param args a bunch of strings from the CLI
+   * 
+   */
+  public static void main(final String[] args) {
+    System.out.println("Hello World!");
+  }
 }

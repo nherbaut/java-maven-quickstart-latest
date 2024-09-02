@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>groupId</groupId>
@@ -11,13 +12,13 @@
 		<connection>scm:git:https://github.com/nherbaut/java-maven-quickstart-latest.git</connection>
 		<developerConnection>scm:git:https://github.com/nherbaut/java-maven-quickstart-latest.git</developerConnection>
 		<url>https://github.com/nherbaut/java-maven-quickstart-latest</url>
-	  </scm>
+	</scm>
 
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>21</maven.compiler.target>
- <java.version>21</java.version>
+		<java.version>21</java.version>
 	</properties>
 
 	<dependencyManagement>
@@ -137,12 +138,7 @@
 			<plugin>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.12.1</version>
-				<configuration>
-					<attach>true</attach>
-					<reportPlugins>
-						
-					</reportPlugins>
-				</configuration>
+
 				<executions>
 					<execution>
 						<id>attach-descriptor</id>
@@ -160,11 +156,69 @@
 					<scmBranch>gh-pages</scmBranch>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.5.0</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>10.18.1</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<configLocation>config/checkstyle/google_checks.xml</configLocation>
+					<consoleOutput>true</consoleOutput>
+					<failsOnError>false</failsOnError>
+					<linkXRef>false</linkXRef>
+				</configuration>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.4.2</version>
+				<configuration>
+					<outputDirectory>${project.build.directory}/lib</outputDirectory>
+				</configuration>
+			</plugin>
+
 		</plugins>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 	</build>
 
 	<reporting>
 		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.5.0</version>
+				<configuration>
+					<configLocation>config/checkstyle/google_checks.xml</configLocation>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
@@ -183,7 +237,7 @@
 					<outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
 
 				</configuration>
-		<!--		<reports>
+				<!--		<reports>
 					<report>changelog</report>
 				</reports>-->
 			</plugin>
@@ -223,13 +277,13 @@
 					<sourceFileIncludes>
 						src/main/java/**/*.java
 					</sourceFileIncludes>
-				<reports>
-					<report>javadoc</report>
-					<report>aggregate</report>
-					<failOnError>false</failOnError>
-				</reports>
-			</configuration>
-				
+					<reports>
+						<report>javadoc</report>
+						<report>aggregate</report>
+						<failOnError>false</failOnError>
+					</reports>
+				</configuration>
+
 			</plugin>
 
 			<plugin>
@@ -238,14 +292,7 @@
 				<version>0.8.12</version>
 			</plugin>
 
-	<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>3.3.0</version>
-				<configuration>
-					<configLocation>google_checks.xml</configLocation>
-				</configuration>
-			</plugin>
+
 
 		</plugins>
 	</reporting>
@@ -255,53 +302,55 @@
 			<url>scm:git:git@github.com:nherbaut/java-maven-quickstart-latest.git</url>
 		</site>
 	</distributionManagement>
+	<url>https://github.com:/herbaut/java-maven-quickstart-latest.git</url>
 	<licenses>
 		<license>
-		  <name>Apache-2.0</name>
-		  <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-		  <distribution>repo</distribution>
-		  <comments>A business-friendly OSS license</comments>
+			<name>Apache-2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
 		</license>
-	  </licenses>
+	</licenses>
 
-	  <organization>
+	<organization>
 		<name>Miage Sorbonne</name>
 		<url>https://miage.pantheonsorbonne.fr/</url>
-	  </organization>
+	</organization>
 
-	  <developers>
+	<developers>
 		<developer>
-		  <id>nherbaut</id>
-		  <name>Nicolas Hebraut</name>
-		  <email>nicolas.herbaut@univ-paris1.fr</email>
-		  <url>http://nextnet.top</url>
-		  <organization>Université Paris 1 Panthéon-Sorbonne</organization>
-		  <organizationUrl>https://www.pantheonsorbonne.fr</organizationUrl>
-		  <roles>
-			<role>architect</role>
-			<role>developer</role>
-		  </roles>
-		  <timezone>Europe/Paris	</timezone>
-		  <properties>
-			<picUrl>https://nextnet.top/images/profile.png</picUrl>
-		  </properties>
+			<id>nherbaut</id>
+			<name>Nicolas Hebraut</name>
+			<email>nicolas.herbaut@univ-paris1.fr</email>
+			<url>http://nextnet.top</url>
+			<organization>Université Paris 1 Panthéon-Sorbonne</organization>
+			<organizationUrl>https://www.pantheonsorbonne.fr</organizationUrl>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>Europe/Paris	</timezone>
+			<properties>
+				<picUrl>https://nextnet.top/images/profile.png</picUrl>
+			</properties>
 		</developer>
-	  </developers>
+	</developers>
 
-    <repositories>
-        <repository>
-            <id>miage.release</id>
-            <name>Miage Releases</name>
-            <url>https://maven.miage.dev/releases</url>
-        </repository>
-        <repository>
-            <id>miage.snapshots</id>
-            <name>Miage Snapshots</name>
-            <url>https://maven.miage.dev/snapshots</url>
-        </repository>
-    </repositories>
+	<repositories>
+		<repository>
+			<id>miage.release</id>
+			<name>Miage Releases</name>
+			<url>https://maven.miage.dev/releases</url>
+		</repository>
+		<repository>
+			<id>miage.snapshots</id>
+			<name>Miage Snapshots</name>
+			<url>https://maven.miage.dev/snapshots</url>
+		</repository>
+	</repositories>
 
 	<name>java-maven-quickstart-latest</name>
 	<description>Up to date maven java template with LTS</description>
+
 
 </project>
