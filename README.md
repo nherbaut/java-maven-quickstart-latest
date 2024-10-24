@@ -2,4 +2,4 @@
 
  this is an up-to-date base archetype for quick starting modern java CLI apps 
 Bonjour
-Test 2, pour essayer
+Test 2, pour essayer, encore
