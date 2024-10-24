@@ -1,5 +1,5 @@
 # java-maven-quickstart-latest
 
-hello world ***
+*** Hello World ***
 
  this is an up-to-date base archetype for quick starting modern java CLI apps 
