@@ -83,9 +83,28 @@
 					<artifactId>maven-project-info-reports-plugin</artifactId>
 					<version>3.6.0</version>
 				</plugin>
+
+				<plugin>
+                <groupId>fr.pantheonsorbonne.ufr27</groupId>
+                <artifactId>miage-maven-plugin</artifactId>
+				<version>1.0</version>
+                <configuration>
+                    <userName>nherbaut</userName>
+                    <sourceDir>src/main/java</sourceDir>
+                </configuration>
+            </plugin>
+
 			</plugins>
+
+			
 		</pluginManagement>
 		<plugins>
+   		<plugin>
+                <groupId>fr.pantheonsorbonne.ufr27</groupId>
+                <artifactId>miage-maven-plugin</artifactId>
+			
+            </plugin>
+
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 
@@ -358,6 +377,31 @@
 			<url>https://maven.miage.dev/snapshots</url>
 		</repository>
 	</repositories>
+
+	 <pluginRepositories>
+        <pluginRepository>
+            <id>miage.release</id>
+            <name>Miage Plugin Releases</name>
+            <url>https://maven.miage.dev/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>miage.snapshots</id>
+            <name>Miage Plugin Snapshots</name>
+            <url>https://maven.miage.dev/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 	<name>java-maven-quickstart-latest</name>
 	<description>Up to date maven java template with LTS</description>
