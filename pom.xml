@@ -84,26 +84,14 @@
 					<version>3.6.0</version>
 				</plugin>
 
-				<plugin>
-                <groupId>fr.pantheonsorbonne.ufr27</groupId>
-                <artifactId>miage-maven-plugin</artifactId>
-
-            </plugin>
+				
 
 			</plugins>
 
 			
 		</pluginManagement>
 		<plugins>
-   		<plugin>
-                <groupId>fr.pantheonsorbonne.ufr27</groupId>
-                <artifactId>miage-maven-plugin</artifactId>
-				<version>1.0</version>
-                <configuration>
-                    <userName>nherbaut</userName>
-                    <sourceDir>src/main/java</sourceDir>
-                </configuration>
-            </plugin>
+   		
 
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
