@@ -87,11 +87,7 @@
 				<plugin>
                 <groupId>fr.pantheonsorbonne.ufr27</groupId>
                 <artifactId>miage-maven-plugin</artifactId>
-				<version>1.0</version>
-                <configuration>
-                    <userName>nherbaut</userName>
-                    <sourceDir>src/main/java</sourceDir>
-                </configuration>
+
             </plugin>
 
 			</plugins>
@@ -102,7 +98,11 @@
    		<plugin>
                 <groupId>fr.pantheonsorbonne.ufr27</groupId>
                 <artifactId>miage-maven-plugin</artifactId>
-			
+				<version>1.0</version>
+                <configuration>
+                    <userName>nherbaut</userName>
+                    <sourceDir>src/main/java</sourceDir>
+                </configuration>
             </plugin>
 
 			<plugin>
