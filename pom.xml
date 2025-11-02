@@ -4,8 +4,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>groupId</groupId>
-	<artifactId>artifactId</artifactId>
+	<groupId>groupid</groupId>
+	<artifactId>artifactid</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
 	<scm>
@@ -19,6 +19,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>25</maven.compiler.target>
 		<java.version>25</java.version>
+		<docker.image.name>${project.groupId}/${project.artifactId}:${project.version}</docker.image.name>
+		<main.class>com.example.Main</main.class>
 	</properties>
 
 	<dependencyManagement>
@@ -84,14 +86,14 @@
 					<version>3.9.0</version>
 				</plugin>
 
-				
+
 
 			</plugins>
 
-			
+
 		</pluginManagement>
 		<plugins>
-   		
+
 
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -203,6 +205,54 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.47.0</version>
+				<configuration>
+					<images>
+						<image>
+							<name>${docker.image.name}</name>
+							<build>
+								<from>eclipse-temurin:25</from>
+								<assembly>
+									<basedir>/app</basedir>
+									<inline>
+										<fileSets>
+											<fileSet>
+												<directory>${project.build.directory}/lib</directory>
+												<includes>
+													<include>${project.build.finalName}.jar</include>
+												</includes>
+												<outputDirectory>.</outputDirectory>
+											</fileSet>
+										</fileSets>
+										<dependencySets>
+											<dependencySet>
+												<outputDirectory>libs</outputDirectory>
+												<scope>runtime</scope>
+												<unpack>false</unpack>
+											</dependencySet>
+										</dependencySets>
+									</inline>
+								</assembly>
+								<entryPoint>
+									<exec>
+										<arg>java</arg>
+										<arg>-cp</arg>
+										<arg>/app/${project.build.finalName}.jar:/app/libs/*</arg>
+										<arg>${main.class}</arg>
+									</exec>
+								</entryPoint>
+							</build>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
+
+			
+
+
 		</plugins>
 		<finalName>${project.artifactId}-${project.version}</finalName>
 	</build>
@@ -303,22 +353,22 @@
 
 		</plugins>
 	</reporting>
-    <distributionManagement>
-        <site>
-            <id>github</id>
-            <url>scm:git:git@github.com:nherbaut/java-maven-quickstart-latest.git</url>
-        </site>
-        <repository>
-            <id>miage</id>
-            <url>https://maven.miage.dev/releases</url>
-        </repository>
+	<distributionManagement>
+		<site>
+			<id>github</id>
+			<url>scm:git:git@github.com:nherbaut/java-maven-quickstart-latest.git</url>
+		</site>
+		<repository>
+			<id>miage</id>
+			<url>https://maven.miage.dev/releases</url>
+		</repository>
 
-        <snapshotRepository>
-            <id>miage</id>
-            <url>https://maven.miage.dev/snapshots</url>
-        </snapshotRepository>
+		<snapshotRepository>
+			<id>miage</id>
+			<url>https://maven.miage.dev/snapshots</url>
+		</snapshotRepository>
 
-    </distributionManagement>
+	</distributionManagement>
 	<url>https://github.com:/herbaut/java-maven-quickstart-latest.git</url>
 	<licenses>
 		<license>
@@ -366,30 +416,30 @@
 		</repository>
 	</repositories>
 
-	 <pluginRepositories>
-        <pluginRepository>
-            <id>miage.release</id>
-            <name>Miage Plugin Releases</name>
-            <url>https://maven.miage.dev/releases</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>miage.snapshots</id>
-            <name>Miage Plugin Snapshots</name>
-            <url>https://maven.miage.dev/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>miage.release</id>
+			<name>Miage Plugin Releases</name>
+			<url>https://maven.miage.dev/releases</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>miage.snapshots</id>
+			<name>Miage Plugin Snapshots</name>
+			<url>https://maven.miage.dev/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<name>java-maven-quickstart-latest</name>
 	<description>Up to date maven java template with LTS</description>
